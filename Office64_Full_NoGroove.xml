@@ -2,7 +2,8 @@
   <Add OfficeClientEdition="64" Channel="Current">
     <Product ID="O365ProPlusRetail">
       <Language ID="en-us" />
-      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="Groove" /> <!-- Excludes OneDrive legacy sync-->
+      <ExcludeApp ID="Lync" /> <!-- Excludes Skype for Business -->
     </Product>
   </Add>
 
@@ -12,3 +13,4 @@
   <RemoveMSI All="TRUE" />
   <Logging Level="Standard" Path="%temp%" />
 </Configuration>
+
