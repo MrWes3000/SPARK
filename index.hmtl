@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slay the Spire Cards</title>
+</head>
+<body>
+
+  <h1>Slay the Spire Cards</h1>
+
+  <!-- Class Selector -->
+  <label for="classSelect">Choose a class:</label>
+  <select id="classSelect">
+    <option value="ironclad">Ironclad</option>
+    <option value="silent">Silent</option>
+    <option value="defect">Defect</option>
+    <option value="watcher">Watcher</option>
+  </select>
+
+  <button onclick="loadCards()">Load Cards</button>
+
+  <hr>
+
+  <!-- Cards Container -->
+  <div id="cardsContainer">
+    <!-- Cards will be injected here -->
+  </div>
+
+  <script>
+    async function loadCards() {
+      const selectedClass = document.getElementById("classSelect").value;
+
+      try {
+        // Placeholder API URL (replace with actual Slay the Spire API)
+        const response = await fetch(`https://api.example.com/cards?class=${selectedClass}`);
+        const data = await response.json();
+
+        const container = document.getElementById("cardsContainer");
+        container.innerHTML = "";
+
+        data.forEach(card => {
+          const cardDiv = document.createElement("div");
+
+          cardDiv.innerHTML = `
+            <h3>${card.name}</h3>
+            <p>Cost: ${card.cost}</p>
+            <p>Type: ${card.type}</p>
+            <p>${card.description}</p>
+            <hr>
+          `;
+
+          container.appendChild(cardDiv);
+        });
+
+      } catch (error) {
+        console.error("Error loading cards:", error);
+      }
+    }
+  </script>
+
+</body>
+</html>
